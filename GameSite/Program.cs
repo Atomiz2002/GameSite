@@ -1,6 +1,9 @@
 using GameSite.Data;
+using GameSite.Models;
+using GameSite.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Westwind.AspNetCore.LiveReload;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +13,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => {
+	        options.SignIn.RequireConfirmedAccount = true;
+	        options.User.RequireUniqueEmail        = true;
+        })
        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddLiveReload();
 
 WebApplication app = builder.Build();
 
@@ -23,6 +31,8 @@ if (app.Environment.IsDevelopment()) {
 	app.UseExceptionHandler("/Home/Error");
 	app.UseHsts();
 }
+
+app.UseLiveReload();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
