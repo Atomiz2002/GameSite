@@ -1,0 +1,22 @@
+﻿@model GameSite.Models.Identity.Login
+
+<form>
+	<card class="card bg-dark border col-sm-7 col-md-5 col-lg-4 col-xl-3 mx-auto my-5">
+		<div class="card-header text-center mt-3" style="font-size: 2.25rem; font-weight: bold">Login</div>
+		<div class="card-body text-center">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<input asp-for="Email" name="Email" autocomplete="Email" class="form-control bg-dark text-light text-center" placeholder="Example@@mail.com">
+				<span asp-validation-for="Email" class="text-danger"></span>
+			<div class="card-group input-group mt-2">
+				<input asp-for="Password" type="password" autocomplete="password" class="form-control bg-dark text-light text-center" placeholder="Password">
+				<i class="btn btn-outline-light bi bi-eye-slash" onclick="passToggle(this)"></i>
+			</div>
+			<button type="submit" class="btn btn-light mt-4 w-50">Login</button>
+		</div>
+	</card>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial"/>
+	<partial name="_PassToggleScriptsPartial"/>
+}

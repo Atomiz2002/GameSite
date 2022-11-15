@@ -1,5 +1,5 @@
 ﻿using GameSite.Models;
-using GameSite.Models.Account;
+using GameSite.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

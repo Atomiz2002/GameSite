@@ -1,7 +1,5 @@
 using GameSite.Data;
-using GameSite.Models;
-using GameSite.Models.Account;
-using Microsoft.AspNetCore.Identity;
+using GameSite.Models.Identity;
 using Microsoft.EntityFrameworkCore;
 using Westwind.AspNetCore.LiveReload;
 
@@ -13,13 +11,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>(options => {
-	        options.SignIn.RequireConfirmedAccount = true;
-	        options.User.RequireUniqueEmail        = true;
-        })
+builder.Services.AddDefaultIdentity<User>(
+	        options => {
+		        options.SignIn.RequireConfirmedAccount = true;
+		        options.User.RequireUniqueEmail        = true;
+	        })
        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
 builder.Services.AddLiveReload();
 
@@ -42,9 +42,16 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-	"default",
-	"{controller=Home}/{action=Index}/{id?}");
+app.UseMvc(
+	routes => {
+		routes.MapRoute(
+			"area",
+			"{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+		routes.MapRoute(
+			"default",
+			"{controller=Home}/{action=Index}/{id?}");
+	});
 
 app.MapRazorPages();
 

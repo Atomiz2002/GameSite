@@ -19,4 +19,29 @@
         <PackageReference Include="Westwind.AspNetCore.LiveReload" Version="0.3.7" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Areas\Administration" />
+      <Folder Include="Areas\GameProfile" />
+      <Folder Include="Areas\Identity\Pages" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_LoginPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Home\Views\Home\About.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Home\Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Home\Views\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Home\Views\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Home\Views\Shared\_LoginPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Home\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Shared\Error.cshtml" />
+      <AdditionalFiles Include="Views\Shared\_LoginPartial.cshtml" />
+      <AdditionalFiles Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    </ItemGroup>
+
 </Project>

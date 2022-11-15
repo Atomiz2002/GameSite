@@ -1,0 +1,64 @@
+﻿@model GameSite.Models.Identity.Register
+
+<form>
+	<card class="card bg-dark border col-sm-7 col-md-5 col-lg-4 col-xl-3 mx-auto my-5">
+		<div class="card-header text-center mt-3" style="font-size: 2.25rem; font-weight: bold">Register</div>
+		<div class="card-body text-center">
+			<input asp-for="Username" name="name" type="text" class="form-control bg-dark text-light text-center mt-2" placeholder="Username">
+			<span asp-validation-for="Username" class="text-danger"></span>
+			<input asp-for="Email" name="email" class="form-control bg-dark text-light text-center mt-2" placeholder="Example@@mail.com">
+			<span asp-validation-for="Email" class="text-danger"></span>
+			<div class="card-group input-group mt-2">
+				<input asp-for="Password" type="password" class="form-control bg-dark text-light text-center" placeholder="Password">
+				<i class="btn btn-outline-light bi bi-eye-slash" onclick="passToggle(this)"></i>
+			</div>
+			<div class="card-group input-group mt-2">
+				<input asp-for="PasswordConfirm" type="password" class="form-control bg-dark text-light text-center" placeholder="Confirm Password">
+				<i class="btn btn-outline-light bi bi-eye-slash" onclick="passToggle(this)"></i>
+			</div>
+			<label asp-for="@Model.Password">Password</label>
+			<input class="form-control" type="password" autocomplete="new-password" aria-required="true" asp-for="@Model.Password"/>
+			<span asp-validation-for="@Model.Password" class="text-danger"></span>
+			<button type="submit" class="btn btn-light mt-3 w-50">Register</button>
+		</div>
+	</card>
+</form>
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <form id="registerForm" method="post">
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="text-center mb-3">
+                <label asp-for="Username">Username</label>
+                <input class="form-control" autocomplete="username" aria-required="true" asp-for="Username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="text-center mb-3">
+                <label asp-for="Email">Email</label>
+                <input class="form-control" autocomplete="username" aria-required="true" asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="text-center mb-3">
+                <label asp-for="Password">Password</label>
+                <input class="form-control" type="password" autocomplete="new-password" aria-required="true" asp-for="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="text-center mb-3">
+                <label asp-for="PasswordConfirm">Confirm Password</label>
+                <input class="form-control" type="password" autocomplete="new-password" aria-required="true" asp-for="PasswordConfirm" />
+                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button id="registerSubmit" type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial"/>
+	<partial name="_PassToggleScriptsPartial" />
+}
